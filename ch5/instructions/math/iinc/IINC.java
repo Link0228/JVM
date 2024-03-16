@@ -12,7 +12,7 @@ import ch5.rtda.LocalVars;
  * @Date: 2024/03/14/9:53
  * @Description:
  */
-public class IINC implements Instruction {
+public class IINC extends Instruction {
     public int index;
     public int iconst;
 

@@ -8,7 +8,7 @@ import ch5.rtda.OperandStack;
 
 
 /**
- * @date 2024.3.12-
+ * @date 2024.3.12-3.15
  */
 public class Main {
     public static void main(String[] args) {
@@ -23,12 +23,18 @@ public class Main {
     }
 
     public static void startJVM(Cmd cmd){
-//        Classpath cp=new Classpath(cmd.getXjreOption(),cmd.getCpOption());
-//        String className=cmd.getClassName().replace('.','/');
-//        ClassFile cf=loadClass(className,cp);
-//        System.out.println("class:"+cmd.getClassName());
+        Classpath cp=new Classpath(cmd.getXjreOption(),cmd.getCpOption());
+        String className=cmd.getClassName().replace('.','/');
+        ClassFile cf=loadClass(className,cp);
+        System.out.println("class:"+cmd.getClassName());
+        MemberInfo mainMethod=getMainMethod(cf);
+        if(mainMethod!=null){
+            Interpreter.interpret(mainMethod);
+        }else{
+            System.out.println("Main method not found in class "+cmd.getClassName());
+        }
 //        printClassInfo(cf);
-//        //Fram fram=new Fram(100,100);
+//        Fram fram=new Fram(100,100);
 //        testLocalVars(fram.getLocalVars());
 //        testOperandStack(fram.getOperandStack());
 
@@ -103,5 +109,14 @@ public class Main {
         System.out.println(ops.popLong());
         System.out.println(ops.popInt());
         System.out.println(ops.popInt());
+    }
+
+    public static MemberInfo getMainMethod(ClassFile cf){
+        for(MemberInfo m:cf.getMethods()){
+            if(m.getName().equals("main")&&m.getDescriptor().equals("([Ljava/lang/String;)V")){
+                return m;
+            }
+        }
+        return null;
     }
 }

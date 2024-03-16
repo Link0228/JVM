@@ -1,6 +1,6 @@
 package ch5.instructions.base;
 
-public abstract class Index8Instruction implements Instruction{
+public abstract class Index8Instruction extends Instruction{
     public int index;
 
     /**

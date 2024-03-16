@@ -12,7 +12,7 @@ import ch5.rtda.Fram;
  * @Date: 2024/03/15/16:53
  * @Description:
  */
-public class GOTO_W implements Instruction {
+public class GOTO_W extends Instruction {
 
     private int offset;
     /**

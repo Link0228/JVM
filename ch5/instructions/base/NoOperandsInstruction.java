@@ -1,6 +1,6 @@
 package ch5.instructions.base;
 
-public abstract class NoOperandsInstruction implements Instruction{
+public abstract class NoOperandsInstruction extends Instruction{
     /**
      * @param reader
      */

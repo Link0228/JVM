@@ -4,7 +4,7 @@ import ch5.rtda.Fram;
 import ch5.instructions.base.BytecodeReader;
 import ch5.instructions.base.Instruction;
 
-public class BIPUSH implements Instruction {
+public class BIPUSH extends Instruction {
     private byte val;
 
     /**

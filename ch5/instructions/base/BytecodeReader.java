@@ -4,7 +4,11 @@ public class BytecodeReader {
     private byte[] code;
     private int pc;
 
-    public void reset(byte[] code,int pc){
+    public int getPc() {
+        return pc;
+    }
+
+    public void reset(byte[] code, int pc){
         this.code=code;
         this.pc=pc;
     }

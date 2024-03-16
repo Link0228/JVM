@@ -12,7 +12,7 @@ import ch5.rtda.Fram;
  * @Date: 2024/03/15/11:06
  * @Description:
  */
-public class LOOKUP_SWITCH implements Instruction {
+public class LOOKUP_SWITCH extends Instruction {
     private int defaultOffset;
     private int npairs;
     private int[] matchOffsets;

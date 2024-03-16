@@ -21,7 +21,7 @@ import ch5.rtda.Fram;
  * @Date: 2024/03/15/14:27
  * @Description:
  */
-public class WIDE implements Instruction {
+public class WIDE extends Instruction {
 
     private Index8Instruction modifiedInstruction;
 

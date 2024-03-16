@@ -3,7 +3,7 @@ package ch5.rtda;
 import java.util.Arrays;
 
 public class LocalVars {
-    private Slote[] localVars;
+    public Slote[] localVars;
 
     public LocalVars(int maxLocals) {
         if(maxLocals>0){

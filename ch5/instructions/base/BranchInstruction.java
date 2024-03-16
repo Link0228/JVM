@@ -1,6 +1,6 @@
 package ch5.instructions.base;
 
-public abstract class BranchInstruction implements Instruction{
+public abstract class BranchInstruction extends Instruction{
     public int offset;
 
 

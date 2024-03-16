@@ -12,7 +12,7 @@ import ch5.rtda.Fram;
  * @Date: 2024/03/15/10:48
  * @Description:
  */
-public class TABLE_SWITCH implements Instruction {
+public class TABLE_SWITCH extends Instruction {
     private int defaultOffset;
     private int low;
     private int high;

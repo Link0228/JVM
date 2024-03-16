@@ -1,10 +1,13 @@
 package ch5;
 
 import ch5.instructions.base.BytecodeReader;
+import ch5.instructions.base.Instruction;
 import ch5.rtda.Fram;
 import ch5.rtda.Thred;
 import ch5.classfile.MemberInfo;
 import ch5.classfile.attributeinfo.CodeAttribute;
+
+import java.util.Arrays;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,7 +25,12 @@ public class Interpreter {
         Thred thread=new Thred();
         Fram frame=thread.newFrame(maxLocals,maxStack);
         thread.pushFram(frame);
-
+        try {
+            loop(thread,bytecode);
+        } catch (Exception e) {
+            System.out.println("LocalVars:"+frame.getLocalVars().localVars[1].getNum());
+            System.out.println("OperandStack:"+frame.getOperandStack().toString());
+        }
         /*
         thread.PushFrame(frame)
         defer catchErr(frame)
@@ -39,6 +47,12 @@ public class Interpreter {
             //decode
             reader.reset(bytecode,pc);
             int opcode= reader.readUint8();
+            Instruction inst=Instruction.newInstruction(opcode);
+            inst.fetchOperands(reader);
+            frame.setNextPC(reader.getPc());
+            //execute
+            System.out.println("pc:"+pc+" "+inst.getClass());
+            inst.execute(frame);
         }
     }
 }

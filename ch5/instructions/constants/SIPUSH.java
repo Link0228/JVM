@@ -4,7 +4,7 @@ import ch5.rtda.Fram;
 import ch5.instructions.base.BytecodeReader;
 import ch5.instructions.base.Instruction;
 
-public class SIPUSH implements Instruction {
+public class SIPUSH extends Instruction {
     private short val;
     /**
      * @param reader
