@@ -1,6 +1,6 @@
 package ch6.rtda;
 
-import java.util.Arrays;
+import ch6.rtda.heap.Objext;
 
 public class LocalVars {
     public Slote[] localVars;
@@ -65,7 +65,7 @@ public class LocalVars {
         return Double.longBitsToDouble(tmp);
     }
 
-    public void setRef(int index,Objext ref){
+    public void setRef(int index, Objext ref){
         localVars[index].setRef(ref);
     }
 

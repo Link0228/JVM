@@ -1,7 +1,7 @@
 package ch6.instructions.stores;
 
 import ch6.rtda.Fram;
-import ch6.rtda.Objext;
+import ch6.rtda.heap.Objext;
 
 public class StoreTools {
     public static void _lstore(Fram fram,int index){

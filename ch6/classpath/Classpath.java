@@ -7,8 +7,13 @@ public class Classpath {
     Entry extClasspath;
     Entry userClasspath;
 
+    Entry entry;
 
-    public Classpath(String XjreOption,String cpOption){
+    public Entry getEntry() {
+        return entry;
+    }
+
+    public Classpath(String XjreOption, String cpOption){
         parseBootAndExtClasspath(XjreOption);
         parseUserClasspath(cpOption);
     }
@@ -74,12 +79,15 @@ public class Classpath {
         byte[] bootData=bootClasspath.readClass(className);
         //return new byte[0];
         if(bootData.length!=0){
+            this.entry=bootClasspath;//from KlassLoader
             return bootData;
         }else {
             byte[] extData=extClasspath.readClass(className);
             if(extData.length!=0){
+                this.entry=extClasspath;//from KlassLoader
                 return extData;
             }else{
+                this.entry=userClasspath;//from KlassLoader
                 return userClasspath.readClass(className);
             }
         }

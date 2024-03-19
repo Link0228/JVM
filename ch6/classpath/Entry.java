@@ -12,7 +12,7 @@ public abstract class Entry {
 
 
     //返回变量的字符串表示
-    abstract String fileToString();
+    public abstract String fileToString();
 
     static Entry newEntry(String path){
         if (path.contains(pathListSeparator)) {

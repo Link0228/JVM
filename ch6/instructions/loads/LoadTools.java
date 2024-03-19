@@ -1,7 +1,7 @@
 package ch6.instructions.loads;
 
 import ch6.rtda.Fram;
-import ch6.rtda.Objext;
+import ch6.rtda.heap.Objext;
 
 public class LoadTools {
     public static void _iload(Fram fram,int index){

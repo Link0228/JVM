@@ -1,5 +1,7 @@
 package ch6.rtda;
 
+import ch6.rtda.heap.Objext;
+
 public class Slote {
     private int num;
     private Objext ref;

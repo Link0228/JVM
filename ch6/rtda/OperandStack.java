@@ -1,6 +1,6 @@
 package ch6.rtda;
 
-import java.util.Arrays;
+import ch6.rtda.heap.Objext;
 
 public class OperandStack {
     private int size;

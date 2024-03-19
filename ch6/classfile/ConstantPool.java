@@ -14,6 +14,8 @@ public class ConstantPool {
         return length;
     }
 
+    public int getInfoLength(){return infos.length;}
+
     /**
      * 常量池实际上也是一个表，但是有三点需要特别注意。第一，
      * 表头给出的常量池大小比实际大1。假设表头给出的值是n，那么常

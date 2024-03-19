@@ -3,7 +3,7 @@ package ch6.instructions.extended;
 import ch6.instructions.base.BranchInstruction;
 import ch6.instructions.base.BranchLogic;
 import ch6.rtda.Fram;
-import ch6.rtda.Objext;
+import ch6.rtda.heap.Objext;
 
 /**
  * Created with IntelliJ IDEA.

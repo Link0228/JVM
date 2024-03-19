@@ -1,6 +1,7 @@
 package ch6.classfile;
 import ch6.classfile.attributeinfo.AttributeInfo;
 import ch6.classfile.attributeinfo.CodeAttribute;
+import ch6.classfile.attributeinfo.ConstantValueAttribute;
 
 public class MemberInfo {
     private ConstantPool cp;
@@ -79,6 +80,15 @@ public class MemberInfo {
         for(AttributeInfo attrInfo:attributes){
             if(attrInfo instanceof CodeAttribute){
                 return (CodeAttribute) attrInfo;
+            }
+        }
+        return null;
+    }
+
+    public ConstantValueAttribute getConstantValueAttribute(){
+        for(AttributeInfo attrInfo:attributes){
+            if(attrInfo instanceof ConstantValueAttribute){
+                return (ConstantValueAttribute) attrInfo;
             }
         }
         return null;

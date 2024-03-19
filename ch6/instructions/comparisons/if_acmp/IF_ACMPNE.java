@@ -3,7 +3,7 @@ package ch6.instructions.comparisons.if_acmp;
 import ch6.instructions.base.BranchInstruction;
 import ch6.instructions.base.BranchLogic;
 import ch6.rtda.Fram;
-import ch6.rtda.Objext;
+import ch6.rtda.heap.Objext;
 import ch6.rtda.OperandStack;
 
 /**

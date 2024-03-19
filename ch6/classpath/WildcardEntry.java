@@ -34,7 +34,7 @@ public class WildcardEntry extends Entry {
 
 
     @Override
-    String fileToString() {
+    public String fileToString() {
         return baseDir;
     }
 }
