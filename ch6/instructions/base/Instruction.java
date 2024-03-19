@@ -36,6 +36,7 @@ import ch6.instructions.conversions.f2x.*;
 import ch6.instructions.conversions.i2x.*;
 import ch6.instructions.conversions.l2x.*;
 import ch6.instructions.extended.*;
+import ch6.instructions.references.*;
 
 public abstract class Instruction {
 
@@ -72,12 +73,9 @@ public abstract class Instruction {
             case 0x0f-> {return new DCONST_1();}
             case 0x10-> {return new BIPUSH();}
             case 0x11-> {return new SIPUSH();}
-            // case 0x12:
-            // 	return &LDC{}
-            // case 0x13:
-            // 	return &LDC_W{}
-            // case 0x14:
-            // 	return &LDC2_W{}
+            case 0x12-> {return new LDC();}
+            case 0x13-> {return new LDC_W();}
+            case 0x14-> {return new LDC2_W();}
             case 0x15-> {return new ILOAD();}
             case 0x16-> {return new LLOAD();}
             case 0x17-> {return new FLOAD();}
@@ -259,26 +257,19 @@ public abstract class Instruction {
             // 	return ARETURN
             // case 0xb1:
             // 	return _RETURN
-            //	case 0xB2:
-            //		retURN &GET_STATIC{}
-            // case 0xb3:
-            // 	return &PUT_STATIC{}
-            // case 0xb4:
-            // 	return &GET_FIELD{}
-            // case 0xb5:
-            // 	return &PUT_FIELD{}
-            //	case 0xB6:
-            //		retURN &INVOKE_VIRTUAL{}
-            // case 0xb7:
-            // 	return &INVOKE_SPECIAL{}
+            case 0xB2-> {return new GET_STATIC();}
+            case 0xb3-> {return new PUT_STATIC();}
+            case 0xb4-> {return new GET_FIELD();}
+            case 0xb5-> {return new PUT_FIELD();}
+            case 0xB6-> {return new INVOKE_VIRTUAL();}
+            case 0xb7-> {return new INVOKE_SPECIAL();}
             // case 0xb8:
             // 	return &INVOKE_STATIC{}
             // case 0xb9:
             // 	return &INVOKE_INTERFACE{}
             // case 0xbA:
             // 	return &INVOKE_DYNAMIC{}
-            // case 0xbB:
-            // 	return &NEW{}
+            case 0xbB-> {return new NEW();}
             // case 0xbC:
             // 	return &NEW_ARRAY{}
             // case 0xbD:
@@ -287,10 +278,8 @@ public abstract class Instruction {
             // 	return ARRAYLENGTH
             // case 0xbF:
             // 	return ATHROW
-            // case 0xc0:
-            // 	return &CHECK_CAST{}
-            // case 0xc1:
-            // 	return &INSTANCE_OF{}
+            case 0xc0->{return new CHECK_CAST();}
+            case 0xc1->{return new INSTANCE_OF();}
             // case 0xc2:
             // 	return MONITORENTER
             // case 0xc3:

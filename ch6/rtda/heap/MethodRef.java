@@ -17,4 +17,12 @@ public class MethodRef extends MemberRef{
         this.cp=cp;
         this.copyMemberRefInfo((ConstantMemberrefInfo) refInfo);
     }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public String getDescriptor(){
+        return this.descriptor;
+    }
 }

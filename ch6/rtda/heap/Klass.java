@@ -57,7 +57,7 @@ public class Klass {
     }
 
     /**
-     * 是否有权限访问other
+     * other是否有权限访问
      * @param other
      * @return
      */
@@ -77,6 +77,97 @@ public class Klass {
         }
         return "";
     }
+
+    /**
+     * 创建新实例
+     * @return
+     */
+    public Objext newObjext(){
+        return new Objext(this);
+    }
+
+
+
+    //class_hierarchy.go
+
+    /**
+     * 在三种情况下，S类型的引用值可以赋值给T类型：S
+     * 和T是同一类型；T是类且S是T的子类；或者T是接口
+     * 且S实现了T接口
+     * @param other
+     * @return
+     */
+    public boolean isAssignableFrom(Klass other){
+        Klass t=this;
+        Klass s=other;
+        if(s==t){
+            return true;
+        }
+        if(!t.isInterface()){
+            return s.isSubClassOf(t);
+        }else {
+            return s.isImplements(t);
+        }
+    }
+
+    /**
+     * 子类判断
+     * @param other
+     * @return
+     */
+    public boolean isSubClassOf(Klass other){
+        for(Klass c=this.getSuperClass();c!=null;c=c.getSuperClass()){
+            if(c==other){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 实现判断
+     * @param iface
+     * @return
+     */
+    public boolean isImplements(Klass iface){
+        for(Klass c=this;c!=null;c=c.getSuperClass()){
+            for(Klass i:c.getInterfaces()){
+                if(i==iface||i.isSubInterfaceOf(iface)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
+    /**
+     * 子接口判断
+     * @param iface
+     * @return
+     */
+    public boolean isSubInterfaceOf(Klass iface){
+        for(Klass superInterface:interfaces){
+            if(superInterface==iface||superInterface.isSubInterfaceOf(iface)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     //访问权限确认
@@ -166,6 +257,23 @@ public class Klass {
 
     public LocalVars getStaticVars() {
         return staticVars;
+    }
+
+    /**
+     * 只是调用getStaticMethod()方法
+     * @return
+     */
+    public Method getMainMethod(){
+        return this.getStaticMethod("main","([Ljava/lang/String;)V");
+    }
+
+    public Method getStaticMethod(String name,String descriptor){
+        for(Method method:this.methods){
+            if(method.isStatic()&&method.name.equals(name)&&method.descriptor.equals(descriptor)){
+                return method;
+            }
+        }
+        return null;
     }
 
 

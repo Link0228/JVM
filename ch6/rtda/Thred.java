@@ -1,5 +1,7 @@
 package ch6.rtda;
 
+import ch6.rtda.heap.Method;
+
 import java.util.Deque;
 
 public class Thred {
@@ -24,8 +26,8 @@ public class Thred {
         return stak.top();
     }
 
-    public Fram newFrame(int maxLocals,int maxStack){
-        return new Fram(maxLocals,maxStack,this);
+    public Fram newFrame(Method method){
+        return new Fram(this,method);
     }
 
     public int getPc() {

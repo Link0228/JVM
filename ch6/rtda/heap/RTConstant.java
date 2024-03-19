@@ -8,13 +8,19 @@ package ch6.rtda.heap;
  * @Description:
  */
 public class RTConstant<T> {
-    public T t;
+    private T t;
+    private int tag;
 
-    public RTConstant(T t) {
+    public RTConstant(T t,int tag) {
         this.t = t;
+        this.tag=tag;
     }
 
     public T getT() {
         return t;
+    }
+
+    public int getTag() {
+        return tag;
     }
 }

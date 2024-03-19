@@ -29,44 +29,45 @@ public class RTConstantPool {
         this.klass = klass;
         for(int i=1;i<cpCount;i++){
             ConstantInfo cpInfo=cfCp.getConstantInfo(i);
-            switch (cpInfo.getTag()){
+            int tag=cpInfo.getTag();
+            switch (tag){
                 case ConstantInfo.CONSTANT_Integer->{
                     ConstantIntegerInfo intInfo=(ConstantIntegerInfo)cpInfo;
-                    consts[i]=new RTConstant<Integer>(intInfo.getVal());//int32
+                    consts[i]=new RTConstant<Integer>(intInfo.getVal(),tag);//int32
                 }
                 case ConstantInfo.CONSTANT_Float->{
                     ConstantFloatInfo floatInfo=(ConstantFloatInfo) cpInfo;
-                    consts[i]=new RTConstant<Float>(floatInfo.getVal());//float32
+                    consts[i]=new RTConstant<Float>(floatInfo.getVal(),tag);//float32
                 }
                 case ConstantInfo.CONSTANT_Long->{
                     ConstantLongInfo longInfo=(ConstantLongInfo) cpInfo;
-                    consts[i]=new RTConstant<Long>(longInfo.getVal());//int64
+                    consts[i]=new RTConstant<Long>(longInfo.getVal(),tag);//int64
                     i++;
                 }
                 case ConstantInfo.CONSTANT_Double->{
                     ConstantDoubleInfo doubleInfo=(ConstantDoubleInfo) cpInfo;
-                    consts[i]=new RTConstant<Double>(doubleInfo.getVal());
+                    consts[i]=new RTConstant<Double>(doubleInfo.getVal(),tag);
                     i++;
                 }
                 case ConstantInfo.CONSTANT_String->{
                     ConstantStringInfo stringInfo=(ConstantStringInfo) cpInfo;
-                    consts[i]=new RTConstant<String>(stringInfo.getString());
+                    consts[i]=new RTConstant<String>(stringInfo.getString(),tag);
                 }
                 case ConstantInfo.CONSTANT_Class->{
                     ConstantClassInfo classInfo=(ConstantClassInfo) cpInfo;
-                    consts[i]=new RTConstant<ClassRef>(new ClassRef(this,classInfo));
+                    consts[i]=new RTConstant<ClassRef>(new ClassRef(this,classInfo),tag);
                 }
                 case ConstantInfo.CONSTANT_Fieldref->{
                     ConstantFieldrefInfo fieldrefInfo=(ConstantFieldrefInfo) cpInfo;
-                    consts[i]=new RTConstant<FieldRef>(new FieldRef(this,fieldrefInfo));
+                    consts[i]=new RTConstant<FieldRef>(new FieldRef(this,fieldrefInfo),tag);
                 }
                 case ConstantInfo.CONSTANT_Methodref->{
                     ConstantMethodrefInfo methodrefInfo=(ConstantMethodrefInfo) cpInfo;
-                    consts[i]=new RTConstant<MethodRef>(new MethodRef(this,methodrefInfo));
+                    consts[i]=new RTConstant<MethodRef>(new MethodRef(this,methodrefInfo),tag);
                 }
                 case ConstantInfo.CONSTANT_InterfaceMethodref->{
                     ConstantInterfaceMethodrefInfo interfaceMethodrefInfo=(ConstantInterfaceMethodrefInfo) cpInfo;
-                    consts[i]=new RTConstant<InterfaceMethodRef>(new InterfaceMethodRef(this,interfaceMethodrefInfo));
+                    consts[i]=new RTConstant<InterfaceMethodRef>(new InterfaceMethodRef(this,interfaceMethodrefInfo),tag);
                 }
             }
         }

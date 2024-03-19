@@ -1,7 +1,9 @@
 package ch6.rtda;
 
+import ch6.rtda.heap.Method;
+
 public class Fram {
-    private Fram lower;
+    private Fram lower;//栈用链表实现
 
     private LocalVars localVars;
 
@@ -11,11 +13,14 @@ public class Fram {
 
     private int nextPC;
 
+    private Method method;//当前方法
 
-    public Fram(int maxLocals,int maxStack,Thred thread) {
-        localVars=new LocalVars(maxLocals);
-        operandStack=new OperandStack(maxStack);
+
+    public Fram(Thred thread,Method method) {
+        this.method=method;
         this.thread=thread;
+        localVars=new LocalVars(method.getMaxLocals());
+        operandStack=new OperandStack(method.getMaxStack());
     }
 
     public Fram getLower() {
@@ -44,5 +49,9 @@ public class Fram {
 
     public Thred getThread() {
         return thread;
+    }
+
+    public Method getMethod() {
+        return method;
     }
 }

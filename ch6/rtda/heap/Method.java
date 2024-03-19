@@ -37,4 +37,32 @@ public class Method extends ClassMember{
             code=codeAttr.getCode();
         }
     }
+
+    public int getMaxStack() {
+        return maxStack;
+    }
+
+    public void setMaxStack(int maxStack) {
+        this.maxStack = maxStack;
+    }
+
+    public int getMaxLocals() {
+        return maxLocals;
+    }
+
+    public void setMaxLocals(int maxLocals) {
+        this.maxLocals = maxLocals;
+    }
+
+    public Klass getKlass(){
+        return this.klass;
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public byte[] getCode() {
+        return code;
+    }
 }

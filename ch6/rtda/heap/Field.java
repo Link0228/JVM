@@ -36,6 +36,19 @@ public class Field extends ClassMember{
         }
     }
 
+    public Klass getKlass(){
+        return this.klass;
+    }
+
+
+    public String getName(){
+        return this.name;
+    }
+
+    public String getDescriptor(){
+        return this.descriptor;
+    }
+
     public int getSlotId() {
         return slotId;
     }

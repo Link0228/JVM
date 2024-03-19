@@ -34,7 +34,7 @@ public class ClassMember {
         }
         Klass c=this.klass;
         if(this.isProtected()){
-            return d==c;//todo  d.isSubClassOf(c) ||c.getPackageName() == d.getPackageName()
+            return d==c||d.isSubClassOf(c)||c.getPackageName().equals(d.getPackageName());
         }
         if(!this.isPrivate()){
             return c.getPackageName().equals(d.getPackageName());
@@ -49,4 +49,6 @@ public class ClassMember {
     public boolean isProtected(){return (accessFlags&AcessFlags.ACC_PROTECTED)!=0;}
 
     public boolean isPrivate(){return (accessFlags&AcessFlags.ACC_PRIVATE)!=0;}
+
+    public boolean isStatic(){return (accessFlags&AcessFlags.ACC_STATIC)!=0;}
 }

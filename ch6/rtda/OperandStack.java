@@ -70,7 +70,7 @@ public class OperandStack {
     public Objext popRef(){
         size--;
         Objext ref=slots[size].getRef();
-        slots[size].setRef(null);
+        //slots[size].setRef(null);
         return ref;
     }
 
