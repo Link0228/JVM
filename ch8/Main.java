@@ -14,7 +14,7 @@ import java.sql.SQLOutput;
 
 
 /**
- * @date 2024.3.24-
+ * @date 2024.3.24-3.27
  */
 public class Main {
     public static void main(String[] args) {
@@ -35,7 +35,7 @@ public class Main {
         Klass mainClass=classLoader.loadClass(className);
         Method mainMethod=mainClass.getMainMethod();
         if(mainMethod!=null){
-            Interpreter.interpret(mainMethod,cmd.isVerboseInstFlag());
+            Interpreter.interpret(mainMethod,cmd.isVerboseInstFlag(),cmd.getArgs());
         }else{
             System.out.println("Main method not found in class "+cmd.getClassName());
         }

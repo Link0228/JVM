@@ -66,9 +66,9 @@ public abstract class ConstantInfo {
             case CONSTANT_Methodref->{return new ConstantMethodrefInfo(cp,tag);}
             case CONSTANT_InterfaceMethodref->{return new ConstantInterfaceMethodrefInfo(cp,tag);}
             case CONSTANT_NameAndType->{return new ConstantNameAndTypeInfo(tag);}
-//            case CONSTANT_MethodType: return &ConstantMethodTypeInfo{}
-//            case CONSTANT_MethodHandle: return &ConstantMethodHandleInfo{}
-//            case CONSTANT_InvokeDynamic: return &ConstantInvokeDynamicInfo{}
+            case CONSTANT_MethodType-> {return new ConstantMethodTypeInfo(tag);}
+            case CONSTANT_MethodHandle->{ return new ConstantMethodHandleInfo(tag);}
+            case CONSTANT_InvokeDynamic->{return new ConstantInvokeDynamicInfo(tag);}
             default-> {
                 System.out.println("java.lang.ClassFormatError: constant pool tag!");
                 return null;

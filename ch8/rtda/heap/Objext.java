@@ -1,7 +1,9 @@
 package ch8.rtda.heap;
 
 import ch8.rtda.LocalVars;
+import ch8.rtda.Slote;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
 public class Objext {
@@ -53,7 +55,8 @@ public class Objext {
     }
 
     public char[] getChars(){
-        return (char[]) data;
+        String str = (String) data;
+        return str.toCharArray();
     }
 
     public float[] getFloats(){
@@ -69,7 +72,8 @@ public class Objext {
     }
 
     public int getArrayLength(){
-        switch (data.getClass().toString().split(" ")[1]){
+        String type=data.getClass().toString().split(" ")[1].substring(0,2);
+        switch (type){
             case "[B","[Z"->{return ((byte[])data).length;}
             case "[S"->{return ((short[])data).length;}
             case "[I"->{return ((int[])data).length;}
@@ -77,7 +81,7 @@ public class Objext {
             case "[C"->{return ((char[])data).length;}
             case "[F"->{return ((float[])data).length;}
             case "[D"->{return ((double[])data).length;}
-            case "[L"->{return ((Object[])data).length;}
+            case "[L"->{return ((Objext[])data).length;}
             default -> {
                 System.out.println("not array!");
                 System.exit(0);
@@ -86,4 +90,16 @@ public class Objext {
         }
     }
 
+    public Objext getRefVar(String name,String descriptor){
+        Field field=klass.getField(name,descriptor,false);
+        LocalVars slots=(LocalVars) data;
+        return slots.getRef(field.getSlotId());
+    }
+
+
+    public void  setRefVar(String name,String descriptor,Objext ref){
+        Field field=klass.getField(name,descriptor,false);
+        LocalVars slots=(LocalVars) data;
+        slots.setRef(field.getSlotId(),ref);
+    }
 }

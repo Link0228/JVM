@@ -240,7 +240,7 @@ public class Klass {
             case "[J"->{return new Objext(this, new long[count]);}
             case "[F"->{return new Objext(this, new float[count]);}
             case "[D"->{return new Objext(this, new double[count]);}
-            default->{return new Objext(this,new Object[count]);}
+            default->{return new Objext(this,new Objext[count]);}
         }
     }
 
@@ -457,6 +457,26 @@ public class Klass {
                 }
             }
         }
+    }
+
+
+    /**
+     * 根据字段名和描述符查找字段
+     * @param name
+     * @param descriptor
+     * @param isStatic
+     * @return
+     */
+    public Field getField(String name,String descriptor,boolean isStatic){
+        for(Klass c=this;c!=null;c=c.getSuperClass()){
+            for(Field field:c.getFields()){
+                if(field.isStatic()==isStatic&&
+                    field.getName().equals(name)&&field.getDescriptor().equals(descriptor)){
+                    return field;
+                }
+            }
+        }
+        return null;
     }
 
 

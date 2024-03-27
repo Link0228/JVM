@@ -6,7 +6,7 @@ import ch8.rtda.Fram;
 import ch8.rtda.Thred;
 import ch8.classfile.MemberInfo;
 import ch8.classfile.attributeinfo.CodeAttribute;
-import ch8.rtda.heap.Method;
+import ch8.rtda.heap.*;
 
 import java.io.Closeable;
 import java.util.Arrays;
@@ -19,10 +19,12 @@ import java.util.Arrays;
  * @Description:
  */
 public class Interpreter {
-    public static void interpret(Method method,boolean logInst){
+    public static void interpret(Method method,boolean logInst,String[] args){
         Thred thread=new Thred();
         Fram frame=thread.newFrame(method);
         thread.pushFram(frame);
+        Objext jArgs=createArgsArray(method.getKlass().getLoader(), args);
+        frame.getLocalVars().setRef(0,jArgs);
         try {
             loop(thread,logInst);
         } catch (Exception e) {
@@ -59,7 +61,7 @@ public class Interpreter {
             Fram frame=thread.popFram();
             Method method=frame.getMethod();
             String className=method.getKlass().getName();
-            System.out.println(">> pc:"+frame.getNextPC()+className+"."+method.getName()+" "+method.getDescriptor());
+            System.out.println(">> pc:"+frame.getNextPC()+"  "+className+"."+method.getName()+" "+method.getDescriptor());
         }
     }
 
@@ -69,5 +71,15 @@ public class Interpreter {
         String methodName=method.getName();
         int pc=frame.getThread().getPc();
         System.out.println(className+"."+methodName+"() #"+pc+"    "+inst.getClass());
+    }
+
+    private static Objext createArgsArray(KlassLoader loader,String[] args){
+        Klass stringClass=loader.loadClass("java/lang/String");
+        Objext argsArr=stringClass.getArrayClass().newArray(args.length);
+        Objext[] jArgs=argsArr.getRefs();
+        for (int i = 0; i < args.length; i++) {
+            jArgs[i]=new StringPool().jString(loader,args[i]);
+        }
+        return argsArr;
     }
 }

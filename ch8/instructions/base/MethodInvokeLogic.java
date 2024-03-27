@@ -5,6 +5,8 @@ import ch8.rtda.OperandStack;
 import ch8.rtda.Slote;
 import ch8.rtda.Thred;
 import ch8.rtda.heap.Method;
+import ch8.rtda.heap.Objext;
+import ch8.rtda.heap.StringPool;
 
 public interface MethodInvokeLogic {
     static void invokeMethod(Fram invokerFrame, Method method){
@@ -40,6 +42,11 @@ public interface MethodInvokeLogic {
                 case "(J)V"->{System.out.println( stack.popLong());}
                 case "(F)V"->{System.out.println( stack.popFloat());}
                 case "(D)V"->{System.out.println( stack.popDouble());}
+                case "(Ljava/lang/String;)V"->{
+                    Objext jStr=stack.popRef();
+                    String str=new StringPool().goString(jStr);
+                    System.out.println(str);
+                }
                 default -> {
                     System.out.println("println:"+descriptor);
                     System.exit(0);

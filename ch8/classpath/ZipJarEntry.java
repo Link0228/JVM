@@ -60,7 +60,7 @@ public class ZipJarEntry extends Entry {
             System.out.println("ZipJarEntry:zip read error");
             e.printStackTrace();
         }
-        System.out.println("ZipJarEntry:class not found yet!");
+        //System.out.println("ZipJarEntry:class not found yet!");
         return new byte[0];
     }
 

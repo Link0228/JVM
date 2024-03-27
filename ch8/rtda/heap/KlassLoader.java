@@ -228,8 +228,9 @@ public class KlassLoader {
                  vars.setDouble(slotId,val);
              }
              case "Ljava/lang/String;"->{
-                 System.out.println("todo");//todo chapter 8
-                 System.exit(0);
+                 String jaStr=(String) rtcp.getConstant(cpIndex).getT();
+                 Objext jStr=new StringPool().jString(klass.getLoader(), jaStr);
+                 vars.setRef(slotId,jStr);
              }
          }
         }
